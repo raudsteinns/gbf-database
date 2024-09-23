@@ -1,5 +1,14 @@
-import { getPlayableCharacterHorizontalImageUrl } from "@/utils/imageUrl";
 import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+import { getPlayableCharacterHorizontalImageUrl } from "@/utils/imageUrl";
 
 interface PlayableCharacterItemProps {
   character: {
@@ -22,27 +31,28 @@ export const PlayableCharacterItem = ({
   character,
 }: PlayableCharacterItemProps) => {
   return (
-    <div key={character.id}>
-      <Image
-        src={getPlayableCharacterHorizontalImageUrl(`${character.id}_01.png`)}
-        alt={character.name}
-        className="w-full h-auto"
-        width={584}
-        height={228}
-        priority
-      />
-      <h2>
-        {character.name} ({character.name_en})
-      </h2>
-      <p>Rarity: {character.rarity}</p>
-      <p>Element: {character.element}</p>
-      <p>Weapon 1: {character.weapon_1}</p>
-      <p>Weapon 2: {character.weapon_2}</p>
-      <p>Type: {character.type}</p>
-      <p>Race: {character.race}</p>
-      <p>Gender: {character.gender}</p>
-      <p>Max HP: {character.max_hp}</p>
-      <p>Max ATK: {character.max_atk}</p>
-    </div>
+    <Card key={character.id}>
+      <CardHeader>
+        <Image
+          src={getPlayableCharacterHorizontalImageUrl(`${character.id}_01.png`)}
+          alt={character.name}
+          className="w-full h-auto"
+          width={584}
+          height={228}
+          priority
+        />
+        <CardTitle>{character.name} </CardTitle>
+        <span>{character.name_en}</span>
+        <CardDescription></CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Rarity: {character.rarity}</p>
+        <p>Element: {character.element}</p>
+        <p>Weapon 1: {character.weapon_1}</p>
+        <p>Weapon 2: {character.weapon_2}</p>
+        <p>Type: {character.type}</p>
+      </CardContent>
+      <CardFooter></CardFooter>
+    </Card>
   );
 };

@@ -2,8 +2,8 @@ import { PlayableCharacterList } from "@/app/components/organisms/PlayableCharac
 
 export default function Home() {
   return (
-    <main>
+    <div>
       <PlayableCharacterList />
-    </main>
+    </div>
   );
 }

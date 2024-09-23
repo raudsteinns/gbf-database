@@ -36,9 +36,11 @@ export const PlayableCharacterList = () => {
 
   return (
     <div>
-      {characters.map((character) => (
-        <PlayableCharacterItem key={character.id} character={character} />
-      ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {characters.map((character) => (
+          <PlayableCharacterItem key={character.id} character={character} />
+        ))}
+      </div>
       <div>
         <button onClick={() => setPage(page - 1)} disabled={page === 0}>
           前のページ
