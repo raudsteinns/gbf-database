@@ -19,6 +19,13 @@ const config: Config = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+			fire: 'hsl(var(--fire))',
+			water: 'hsl(var(--water))',
+			earth: 'hsl(var(--earth))',
+			wind: 'hsl(var(--wind))',
+			light: 'hsl(var(--light))',
+			dark: 'hsl(var(--dark))',
+			
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -49,7 +56,15 @@ const config: Config = {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
-  			border: 'hsl(var(--border))',
+  			border: {
+				DEFAULT: 'hsl(var(--border))',
+				fire: 'hsl(var(--fire))',
+				water: 'hsl(var(--water))',
+				earth: 'hsl(var(--earth))',
+				wind: 'hsl(var(--wind))',
+				light: 'hsl(var(--light))',
+				dark: 'hsl(var(--dark))',
+			},
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
   			chart: {
@@ -59,7 +74,10 @@ const config: Config = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+		boxShadow: {
+			static: '(var(--shadow-static))'
+		},
   	}
   },
   plugins: [require("tailwindcss-animate")],

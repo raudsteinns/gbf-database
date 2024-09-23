@@ -26,31 +26,45 @@ interface PlayableCharacterItemProps {
     max_atk: number;
   };
 }
+const typeColorMap: { [key: string]: string } = {
+  火: "text-fire border-fire",
+  水: "text-water border-water",
+  土: "text-earth border-earth",
+  風: "text-wind border-wind",
+  光: "text-light border-light",
+  闇: "text-dark border-dark",
+};
 
 export const PlayableCharacterItem = ({
   character,
 }: PlayableCharacterItemProps) => {
+  const typeColorClass = typeColorMap[character.element];
+
   return (
-    <Card key={character.id}>
+    <Card key={character.id} className="shadow-static rounded-sm border-none">
+      <Image
+        src={getPlayableCharacterHorizontalImageUrl(`${character.id}_01.png`)}
+        alt={character.name}
+        className="w-full h-auto"
+        width={584}
+        height={228}
+        priority
+      />
       <CardHeader>
-        <Image
-          src={getPlayableCharacterHorizontalImageUrl(`${character.id}_01.png`)}
-          alt={character.name}
-          className="w-full h-auto"
-          width={584}
-          height={228}
-          priority
-        />
         <CardTitle>{character.name} </CardTitle>
         <span>{character.name_en}</span>
         <CardDescription></CardDescription>
       </CardHeader>
       <CardContent>
         <p>Rarity: {character.rarity}</p>
-        <p>Element: {character.element}</p>
+        <p
+          className={`inline-block leading-none px-2 py-1 rounded-sm mt-2 border border-solid ${typeColorClass}`}
+        >
+          {character.element}
+        </p>
         <p>Weapon 1: {character.weapon_1}</p>
         <p>Weapon 2: {character.weapon_2}</p>
-        <p>Type: {character.type}</p>
+        <p>{character.type}</p>
       </CardContent>
       <CardFooter></CardFooter>
     </Card>

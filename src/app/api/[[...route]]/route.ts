@@ -22,7 +22,7 @@ const app = new Hono<{ Bindings: Bindings}>().basePath('/api')
 // Accessing D1 is via the c.env.YOUR_BINDING property
 app.get("/query/characters", async (c) => {
   const limit = parseInt(c.req.query('limit') || '12', 12);
-  const offset = parseInt(c.req.query('offset') || '0', 10);
+  const offset = parseInt(c.req.query('offset') || '0', 12);
   
   const query = `
     SELECT

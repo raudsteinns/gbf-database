@@ -39,5 +39,5 @@ next-env.d.ts
 .wrangler
 .dev.vars
 
-/D1
+/sql
 /migrations
