@@ -8,6 +8,16 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  experimental: {
+    runtime: 'edge',
+  },
+};
 
-export default nextConfig;
+export default {
+  images: {
+    domains: ['prd-game-a-granbluefantasy.akamaized.net',
+      'media.skycompass.io'
+    ],
+  },
+};
