@@ -33,13 +33,13 @@ export const PlayableCharacterItem = ({
   return (
     <Card key={character.id}>
       <CardHeader>
-        <Image
+        <img
           src={getPlayableCharacterHorizontalImageUrl(`${character.id}_01.png`)}
           alt={character.name}
           className="w-full h-auto"
           width={584}
           height={228}
-          priority
+          loading="lazy"
         />
         <CardTitle>{character.name} </CardTitle>
         <span>{character.name_en}</span>
