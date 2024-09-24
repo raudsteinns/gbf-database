@@ -68,5 +68,6 @@ export interface Skin {
 
   export interface PlayableCharacterData {
     count: number;
+    totalCount: number;
     characters: PlayableCharacter[];
   }

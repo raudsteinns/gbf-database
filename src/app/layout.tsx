@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Sidebar } from "./components/organisms/Sidebar";
+import { ThemeProvider } from "@/components/theme-provider";
+import Header from "./components/organisms/Header";
 
 export const metadata: Metadata = {
   title: "GBF DB",
@@ -14,11 +17,27 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
-        <header></header>
-        <main>
-          <div className="container mx-auto">{children}</div>
-        </main>
-        <footer></footer>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main>
+              <div className="mx-auto">
+                <div className="flex">
+                  <Sidebar />
+                  <main className="md:ml-14 lg:ml-64 w-full">
+                    <div className="c-container mx-auto">{children}</div>
+                  </main>
+                </div>
+              </div>
+            </main>
+            <footer></footer>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,4 +1,6 @@
 import Image from "next/image";
+
+import { getPlayableCharacterHorizontalImageUrl } from "@/utils/imageUrl";
 import {
   Card,
   CardContent,
@@ -7,8 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-import { getPlayableCharacterHorizontalImageUrl } from "@/utils/imageUrl";
 
 interface PlayableCharacterItemProps {
   character: {
@@ -41,7 +41,7 @@ export const PlayableCharacterItem = ({
   const typeColorClass = typeColorMap[character.element];
 
   return (
-    <Card key={character.id} className="shadow-static rounded-sm border-none">
+    <Card key={character.id} className="rounded-sm">
       <Image
         src={getPlayableCharacterHorizontalImageUrl(`${character.id}_01.png`)}
         alt={character.name}
@@ -51,8 +51,15 @@ export const PlayableCharacterItem = ({
         priority
       />
       <CardHeader>
-        <CardTitle>{character.name} </CardTitle>
-        <span>{character.name_en}</span>
+        <CardTitle className="has-l-font-size" data-layout="-fluid-typography">
+          {character.name}{" "}
+        </CardTitle>
+        <span
+          className="has-xs-font-size leading-none"
+          data-layout="-fluid-typography"
+        >
+          {character.name_en}
+        </span>
         <CardDescription></CardDescription>
       </CardHeader>
       <CardContent>

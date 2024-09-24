@@ -21,8 +21,8 @@ const app = new Hono<{ Bindings: Bindings}>().basePath('/api')
 
 // Accessing D1 is via the c.env.YOUR_BINDING property
 app.get("/query/characters", async (c) => {
-  const limit = parseInt(c.req.query('limit') || '12', 12);
-  const offset = parseInt(c.req.query('offset') || '0', 12);
+  const limit = parseInt(c.req.query('limit') || '12', 10);
+  const offset = parseInt(c.req.query('offset') || '0', 10);
   
   const query = `
     SELECT
@@ -105,11 +105,20 @@ app.get("/query/characters", async (c) => {
     LIMIT ${limit} OFFSET ${offset};
   `;
 
-  const { results } = await process.env.PC_DB.prepare(query).all();
-  
+  const countQuery = `SELECT COUNT(*) as totalCount FROM playable_character;`; // 追加: 総数を取得するクエリ
+
+  const [queryResult, countResult] = await Promise.all([
+    process.env.PC_DB.prepare(query).all(),
+    process.env.PC_DB.prepare(countQuery).first()
+  ]);
+
+  const totalCount = countResult ? countResult.totalCount : 0;
+  const characters = queryResult.results;
+
   return c.json({
-    count: results.length,
-    characters: results
+    count: characters.length,
+    totalCount: totalCount,
+    characters: characters
   });
 });
 
